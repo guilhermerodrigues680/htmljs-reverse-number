@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inversor de dígitos de um número</title>
+</head>
+<body>
+  <!--
+    Dentro do body é definido a estrutura da página
+    O HTML não é uma linguagem de programação é apenas uma linguagem de marcação
+  -->
+  <h3>Programa para inverter os digitos de um numero</h3>
+  
+  <p>
+    Digite um número inteiro:
+    <input id="inputnum" type="number">
+    <button id="btcalc">calcular</button>
+  </p>
+  
+  <p>Resultado:</p>
+  <p id="presult"></p>
+
+  <!-- Inicio da tag script -->
+  <script>
+    /*
+      Dentro da tag script é definido a parte lógica da página.
+      No script é utilizada a linguagem Javascript que é uma linguagem de programação.
+      A sintaxe é similar tanto a Java quanto a C++.
+      Javascript é interpretado, portanto "não precisa ser compilado" para ser executado.
+      Javascript é dinamicamente tipado, portanto não é necessário definir tipos para as variaveis.
+      O ponto e virgula é opcional. Para strings pode-se utilizar tanto " ou '
+    */
+   
+    // Para trazer os elementos de estrutura da página para dentro da linguagem, usa-se:
+    // usa-se var para declarar uma variavel de qualquer tipo.
+    var inputNumDOM = document.getElementById("inputnum"); // "
+    var btCalcDOM = document.getElementById('btcalc'); // '
+    var pResultDOM = document.getElementById("presult") // ponto e virgula opcional
+
+    // definindo uma função em javascript
+    function invertNum(x) {
+      // Como Javascript é dinamicamente tipado não é necessário dizer se a função retorna algo
+      var inv = 0;
+      while (x > 0) {
+        inv = (10 * inv) + (x % 10);
+        // Essa linha em javascript retorna um float, pois dinamicamente ele detecta
+        // que a divisão não é inteira. Em C o resultado é truncado e retorna int.
+        // x /= 10;
+        
+        // Assim para adaptar para javascript ficará:
+        // Math.floor trunca o numero
+        x = Math.floor(x / 10);
+      }
+
+      return inv;
+    }
+   
+    // Para saber quando o botão foi clicado usa-se:
+    btCalcDOM.addEventListener("click", function() {
+      // Essa função/bloco de código é executado sempre que o botão é clicado.
+
+      // parseInt tranforma o valor do campo em um numero
+      var num = parseInt(inputNumDOM.value);
+      var result = invertNum(num);
+      // Para escrever no HTML usa-se innerHTML:
+      pResultDOM.innerHTML = result;
+    });
+  </script>
+  <!-- Fim da tag script -->
+</body>
+</html>
